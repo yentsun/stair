@@ -17,6 +17,13 @@ Installation
 npm i stair
 ```
 
+
+Usage
+-----
+
+This is work in progress...
+
+
 Credits
 -------
 
