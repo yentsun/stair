@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "engines": {
+    "node": ">=8.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yentsun/stair.git"
@@ -22,5 +25,15 @@
   "bugs": {
     "url": "https://github.com/yentsun/stair/issues"
   },
-  "homepage": "https://github.com/yentsun/stair#readme"
+  "homepage": "https://github.com/yentsun/stair#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "moment": "^2.21.0",
+    "node-nats-streaming": "0.0.28",
+    "winston": "^2.4.1"
+  }
 }
