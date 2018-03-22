@@ -13,4 +13,4 @@ before_install:
 
 install: npm i
 
-script: npm test
+script: node_modules/.bin/nyc npm test && node_modules/.bin/nyc report --reporter=text-lcov | coveralls
