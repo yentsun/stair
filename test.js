@@ -12,6 +12,11 @@ describe('stair', () => {
         });
     });
 
+    after((done) => {
+        stair._stan.close();
+        done()
+    });
+
     describe('write', () => {
 
         it('writes an event', (done) => {
