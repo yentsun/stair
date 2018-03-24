@@ -7,7 +7,7 @@ const Logger = require('./lib/logger');
 
 module.exports = class extends EventEmitter {
 
-    constructor(options) {
+    constructor(options={}) {
 
         super();
         const defaults = {
@@ -16,7 +16,7 @@ module.exports = class extends EventEmitter {
             group: 'default',
             id: 'default'
         };
-        this._options = options ? merge(defaults, options) : defaults;
+        this._options = merge(defaults, options);
         this._logger = this._options.logger || Logger(this._options.id);
         this._stan = STAN.connect(this._options.cluster, this._options.id, options);
 
