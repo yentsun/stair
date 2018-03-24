@@ -1,7 +1,8 @@
-![icon]
 
 stair
 =====
+
+![icon]
 
 A Node.js event transport based on nats-streaming (stan). *'Stair'* is 
 'history' in Irish.

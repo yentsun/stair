@@ -7,22 +7,34 @@ const Logger = require('./lib/logger');
 
 module.exports = class extends EventEmitter {
 
-    constructor(options) {
+    constructor(options={}) {
 
         super();
         const defaults = {
             url: 'nats://localhost:4222',
             cluster: 'test-cluster',
-            group: 'default'
+            group: 'default',
+            id: 'default'
         };
-        this._options = options ? merge(defaults, options) : defaults;
-        this._logger = this._options.logger || Logger(this._options.group);
-        this._stan = STAN.connect(this._options.cluster, 'subscriber');
+        this._options = merge(defaults, options);
+        this._logger = this._options.logger || Logger(this._options.id);
+        this._stan = STAN.connect(this._options.cluster, this._options.id, options);
+        this._state = null;
 
         this._stan.on('connect', () => {
             this._state = 'connected';
-            this._logger.info('connected to STAN cluster:', this._stan.clusterID);
             this.emit('connect');
+            this._logger.info('connected to cluster:', this._stan.clusterID);
+        });
+
+        this._stan.on('close', () => {
+            this._state = 'closed';
+            this._logger.info('closed');
+        });
+
+        this._stan.on('reconnecting', () => {
+            this._state = 'reconnecting';
+            this._logger.info('reconnecting');
         });
 
         this._stan.on('error', (error) => {
@@ -39,7 +51,7 @@ module.exports = class extends EventEmitter {
 
         this._stan.publish(topic, JSON.stringify(message), (error, guid) => {
             if (error) this._logger.error(error.message);
-            else this._logger.debug('WRITTEN', topic, message, guid);
+            else this._logger.debug('-->', topic, message, guid);
         });
 
     }
@@ -47,7 +59,7 @@ module.exports = class extends EventEmitter {
     read(topic, handler) {
 
         const opts = this._stan.subscriptionOptions().setDeliverAllAvailable();
-        const sub = this._stan.subscribe(topic, opts);
+        const sub = this._stan.subscribe(topic, this._options.group, opts);
         const queueStream = new PassThrough();
         const storeWritable = new Writable({
             write(data, encoding, done) {
@@ -61,6 +73,10 @@ module.exports = class extends EventEmitter {
             this._logger.debug(msgData, seq);
             queueStream.push(JSON.stringify(msgData));
         });
+    }
+
+    close() {
+        this._stan.close();
     }
 
 };
