@@ -1,3 +1,9 @@
+[0.1.3] - 2018-03-24
+--------------------
+- [x] Increase code coverage
+- [x] Replace empty options check with default value @ constructor
+
+
 [0.1.2] - 2018-03-23
 --------------------
 - [x] Add travis and coveralls ci
