@@ -2,7 +2,7 @@ const {assert} = require('chai');
 const Stair = require('./');
 
 
-describe('stair', () => {
+describe('stair (empty options)', () => {
 
     const stair = new Stair();
 
@@ -12,8 +12,33 @@ describe('stair', () => {
         });
     });
 
+    it('runs ok', (done) => {
+        assert.isOk(stair._stan.clusterID);
+        assert.isOk(stair._stan.clientID);
+        done();
+    });
+
     after((done) => {
-        stair._stan.close();
+        stair.close();
+        done()
+    });
+
+});
+
+describe('stair', () => {
+
+    const stair = new Stair({
+        id: 'alpha'
+    });
+
+    before((done) => {
+        stair.on('connect', () => {
+            done();
+        });
+    });
+
+    after((done) => {
+        stair.close();
         done()
     });
 
