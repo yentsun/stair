@@ -19,17 +19,21 @@ module.exports = class extends EventEmitter {
         this._options = merge(defaults, options);
         this._logger = this._options.logger || Logger(this._options.id);
         this._stan = STAN.connect(this._options.cluster, this._options.id, options);
+        this._state = null;
 
         this._stan.on('connect', () => {
+            this._state = 'connected';
             this.emit('connect');
             this._logger.info('connected to cluster:', this._stan.clusterID);
         });
 
         this._stan.on('close', () => {
+            this._state = 'closed';
             this._logger.info('closed');
         });
 
         this._stan.on('reconnecting', () => {
+            this._state = 'reconnecting';
             this._logger.info('reconnecting');
         });
 
