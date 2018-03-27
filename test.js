@@ -47,13 +47,13 @@ describe('stair', () => {
 
         describe('write', () => {
 
-            it('writes an event', (done) => {
+            it('writes an event', async () => {
                 stair.read('foo.bar', (message, handled) => {
                     assert.equal(message.foo, 'bar');
                     handled();
-                    done();
                 });
-                stair.write('foo.bar', {foo: 'bar'});
+                const guid = await stair.write('foo.bar', {foo: 'bar'});
+                assert.isOk(guid);
             })
 
         });

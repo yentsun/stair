@@ -56,10 +56,16 @@ module.exports = class extends EventEmitter {
 
     write(topic, message) {
 
-        this._stan.publish(topic, JSON.stringify(message), (error, guid) => {
-            if (error) this._logger.error(error.message);
-            else this._logger.debug('-->', topic, message, guid);
+        return new Promise((resolve, reject) => {
+            this._stan.publish(topic, JSON.stringify(message), (error, guid) => {
+                if (error) reject(error);
+                else {
+                    resolve(guid);
+                    this._logger.debug('-->', topic, message, guid);
+                }
+            });
         });
+
 
     }
 
