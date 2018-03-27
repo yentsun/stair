@@ -20,6 +20,11 @@ describe('stair', () => {
             done();
         });
 
+        after((done) => {
+            stair.close();
+            done();
+        });
+
     });
 
     describe('general', () => {
