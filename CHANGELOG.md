@@ -1,3 +1,5 @@
+[0.2.0] - 2018-03-27
+--------------------
 - [x] Add `stair.connected()` attribute
 
 
