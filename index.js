@@ -20,6 +20,9 @@ module.exports = class extends EventEmitter {
         this._logger = this._options.logger || Logger(this._options.id);
         this._stan = STAN.connect(this._options.cluster, this._options.id, options);
         this._state = null;
+        this.readyPromise = new Promise(resolve => {
+            this.on('connect', () => {resolve()});
+        });
 
         this._stan.on('connect', () => {
             this._state = 'connected';
@@ -45,6 +48,10 @@ module.exports = class extends EventEmitter {
             else
                 this.emit('error', error);
         });
+    }
+
+    connected() {
+        return this.readyPromise;
     }
 
     write(topic, message) {

@@ -1,3 +1,6 @@
+- [x] Add `stair.connected()` attribute
+
+
 [0.1.3] - 2018-03-24
 --------------------
 - [x] Increase code coverage
