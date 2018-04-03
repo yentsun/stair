@@ -7,7 +7,7 @@ stair
 A Node.js event transport based on nats-streaming (stan). *'Stair'* is 
 'history' in Irish.
 
-Stair is [Tasu]'s' 'twin', like [STAN] is to [NATS].
+Stair is [Tasu]'s' 'twin', almost like [STAN] is to [NATS].
 
 
 [![Build Status](https://travis-ci.org/yentsun/stair.svg?branch=master)](https://travis-ci.org/yentsun/stair)

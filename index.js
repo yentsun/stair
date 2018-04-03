@@ -83,7 +83,7 @@ module.exports = class extends EventEmitter {
         sub.on('message', (msg) => {
             const msgData = JSON.parse(msg.getData());
             const seq = msg.getSequence();
-            this._logger.debug(msgData, seq);
+            this._logger.debug('<--', topic, msgData, seq);
             queueStream.push(JSON.stringify(msgData));
         });
     }
