@@ -1,3 +1,8 @@
+[0.3.2] - 2018-04-11
+--------------------
+- [x] Add `reconnect` event handling
+
+
 [0.3.1] - 2018-04-04
 --------------------
 - [x] Fix arrow @ read logger

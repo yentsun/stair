@@ -40,6 +40,11 @@ module.exports = class extends EventEmitter {
             this._logger.info('reconnecting');
         });
 
+        this._stan.on('reconnect', () => {
+            this._state = 'connected';
+            this._logger.info('reconnected');
+        });
+
         this._stan.on('error', (error) => {
             this._logger.error(`${error.message}${error.code ? ' (code: '+error.code+')' : ''}`);
             if (error.code === 'CONN_ERR') {
