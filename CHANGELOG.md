@@ -1,3 +1,8 @@
+[0.4.0]
+-------
+- [x] Expand subscription options #7
+
+
 [0.3.2] - 2018-04-11
 --------------------
 - [x] Add `reconnect` event handling
