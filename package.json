@@ -4,7 +4,7 @@
   "description": "A Node.js microservice transport based on nats-streaming",
   "main": "main.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "mocha test.js",
     "stan": "export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin && nats-streaming-server -p 4222 -DV"
   },
   "engine-strict": true,
