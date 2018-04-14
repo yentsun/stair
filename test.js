@@ -1,6 +1,7 @@
 const {assert} = require('chai');
 const Stair = require('./');
 const sinon = require('sinon');
+const TRID = require('trid');
 
 
 describe('stair', () => {
@@ -33,6 +34,8 @@ describe('stair', () => {
             id: 'alpha'
         });
 
+        const trid = new TRID({prefix: 's'});
+
         // TODO investigate this failing tests
         // before((done) => {
         //     stair.on('connect', () => {
@@ -47,13 +50,37 @@ describe('stair', () => {
 
         describe('write', () => {
 
-            it('writes an event', async () => {
-                stair.read('foo.bar', (message, handled) => {
-                    assert.equal(message.foo, 'bar');
+            const id = trid.seq();
+
+            it('returns a guid', async () => {
+                const guid = await stair.write(id, {foo: 'bar'});
+                assert.isOk(guid);
+            });
+
+        });
+
+        describe('read', () => {
+
+
+            it('reads an event with default subscription options', async () => {
+                const id = trid.seq();
+                await stair.read(id, (message, handled) => {
+                    assert.equal(message.foo, id);
                     handled();
                 });
-                const guid = await stair.write('foo.bar', {foo: 'bar'});
-                assert.isOk(guid);
+                stair.write(id, {foo: id});
+            });
+
+            it('reads an event with custom subscription options', async () => {
+                const id = trid.seq();
+                await stair.write(id, {foo: id});
+                const opts = stair.subopts();
+                // see https://github.com/nats-io/node-nats-streaming#subscription-start-ie-replay-options
+                opts.setStartWithLastReceived();
+                await stair.read(id, opts, (message, handled) => {
+                    assert.equal(message.foo, id);
+                    handled();
+                });
             })
 
         });
