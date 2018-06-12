@@ -1,5 +1,5 @@
-[0.4.2]
--------
+[0.4.2] - 2018-06-12
+--------------------
 - [x] Add snyk.io badge
 - [x] Change `NATS_LOG_LEVEL` to `LOG_LEVEL` env var
 
