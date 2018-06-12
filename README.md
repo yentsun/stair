@@ -12,6 +12,7 @@ Stair is [Tasu]'s' 'twin', almost like [STAN] is to [NATS].
 
 [![Build Status](https://travis-ci.org/yentsun/stair.svg?branch=master)](https://travis-ci.org/yentsun/stair)
 [![Coverage Status](https://coveralls.io/repos/github/yentsun/stair/badge.svg?branch=master)](https://coveralls.io/github/yentsun/stair?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/yentsun/stair/badge.svg?targetFile=package.json)](https://snyk.io/test/github/yentsun/stair?targetFile=package.json)
 
 
 Installation
