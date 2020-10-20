@@ -1,3 +1,8 @@
+[0.4.3]
+-------
+- [x] Update dependencies
+
+
 [0.4.2] - 2018-06-12
 --------------------
 - [x] Add snyk.io badge
