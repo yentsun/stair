@@ -9,7 +9,7 @@
   },
   "engine-strict": true,
   "engines": {
-    "node": "lts"
+    "node": "12"
   },
   "repository": {
     "type": "git",
