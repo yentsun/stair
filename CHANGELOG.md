@@ -1,3 +1,8 @@
+[0.4.4]
+-------
+- [x] Downgrade Mocha to 7
+
+
 [0.4.3] - 2020-10-20
 --------------------
 - [x] Update dependencies
