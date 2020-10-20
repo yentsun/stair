@@ -2,10 +2,10 @@ dist: xenial
 language: go
 
 node_js:
-  - lts/*
+  - 12
 
 go:
-  - "1.8"
+  - "1.13.10"
 
 before_install:
   - go get github.com/nats-io/nats-streaming-server
