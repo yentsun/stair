@@ -39,6 +39,6 @@
   "dependencies": {
     "lodash": "^4.17.10",
     "node-nats-streaming": "0.0.28",
-    "winston": "^2.4.3"
+    "winston": "^3.3.0"
   }
 }
