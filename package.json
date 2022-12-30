@@ -30,7 +30,7 @@
   "homepage": "https://github.com/yentsun/stair#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^7.2.0",
+    "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "sinon": "^4.5.0",
     "trid": "^0.1.1",
